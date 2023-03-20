@@ -24,19 +24,15 @@ def errors(func: Callable) -> Callable:
 
 
 nzbhydra = NzbHydra()
-
-
 @Client.on_message(filters.command(["nzbfind", "nzbsearch", "movie", "series", "tv"]) & check_auth)
 @errors
 async def search(_, message: Message):
 
     if len(message.command) < 2:
-        return await message.reply_text(
-            "Please provide a proper search query.", quote=True)
+        return await message.reply_text("Please provide a proper search query.", quote=True)
 
     user_input = message.text.split(maxsplit=1)[1]
-    reply_msg = await message.reply_text(
-        "Searching your query. Please wait...", quote=True)
+    reply_msg = await message.reply_text("Searching your query. Please wait...", quote=True)
 
     output = ""
     command = message.command[0]
@@ -48,26 +44,20 @@ async def search(_, message: Message):
             output = await nzbhydra.imdb_movie_search(user_input)
 
         elif imdbid := re.search(r".+(tt\d+)", user_input):
-            try:
-                output = await nzbhydra.imdb_movie_search(imdbid.group(1))
-            except:
-                output = await nzbhydra.movie_search(user_input)
+            try: output = await nzbhydra.imdb_movie_search(imdbid.group(1))
+            except: output = await nzbhydra.movie_search(user_input)
 
-        else:
-            output = await nzbhydra.movie_search(user_input)
+        else: output = await nzbhydra.movie_search(user_input)
 
     elif command in ["series", "tv"]:
         if re.search("^tt[0-9]*$", user_input):
             output = await nzbhydra.imdb_series_search(user_input)
 
         elif imdbid := re.search(r".+(tt\d+)", user_input):
-            try:
-                output = await nzbhydra.imdb_series_search(imdbid.group(1))
-            except:
-                output = await nzbhydra.series_search(user_input)
+            try: output = await nzbhydra.imdb_series_search(imdbid.group(1))
+            except: output = await nzbhydra.series_search(user_input)
 
-        else:
-            output = await nzbhydra.series_search(user_input)
+        else: output = await nzbhydra.series_search(user_input)
 
     if output:
         telegraph_output = await telegraph_paste(output)
