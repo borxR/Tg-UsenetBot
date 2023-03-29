@@ -120,7 +120,7 @@ sudo docker run usenetbot
 
 Based on : https://github.com/sanjit-sinha/TelegramBot-Boilerplate
 
-<a href="https://t.me/abhieshekk"><strong>Abhishek</strong></a> and <a href="https://t.me/Mohitjoshi155"><strong>Mohitjoshi</strong></a> for helping out with usenet stuff.
+Thanks <a href="https://t.me/abhieshekk"><strong>Abhishek</strong></a> and <a href="https://t.me/Mohitjoshi155"><strong>Mohitjoshi</strong></a> for helping out with usenet stuff.
  
 Any kind of feedback, bug reports, or contributions is greatly appreciated! :)
  
